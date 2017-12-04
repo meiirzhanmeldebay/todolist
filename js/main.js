@@ -1,6 +1,4 @@
 
-
-
 $(document).ready(function(){
 
   var data =(localStorage.getItem('todoList'))? JSON.parse(localStorage.getItem('todoList')) :{
@@ -68,7 +66,7 @@ $(document).ready(function(){
       }
 
       for (var j = 0; j < data.completed.length ; j++) {
-        var value = data.completed[i];
+        var value = data.completed[j];
         addItemTodo(value,true); 
       }
     
@@ -183,5 +181,14 @@ $(document).ready(function(){
 
 
 	
+});
+
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".todo li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 });
 
